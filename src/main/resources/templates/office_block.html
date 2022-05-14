@@ -16,28 +16,27 @@
         <header th:insert="blocks/header.html"></header>
 
         <div class="container mt-5" style="text-align:center">
-            <h1>Книги</h1>
+            <h1>Канцелярия</h1>
         </div>
 
         <main>
             <div class="container">
-                <div class="card-deck mb-3 text-center" th:each="el: ${book}">
+                <div class="card-deck mb-3 text-center" th:each="el: ${office}">
                     <div class="card mb-4 box-shadow">
                         <div class="card-header">
-                            <h4 class="my-0 font-weight-normal" th:text="${el.book_Name}"></h4>
+                            <h4 class="my-0 font-weight-normal" th:text="${el.name}"></h4>
                         </div>
                         <div class="card-body">
-                            <img src="https://avatars.mds.yandex.net/i?id=aedf088141ef777f1b86b5fbbfb1c220-5451423-images-thumbs&n=13&exp=1">
+                            <img src="https://spb.brandlab.ru/upload/iblock/b37/b37e7859f3161f6fbef2bec4b944184d.jpg">
                             <ul class="list-unstyled mt-3 mb-4">
-                                <li><b>Имя автора: </b><span th:text="${el.author_Name}"></span></li>
                                 <li><b>Количество: </b><span th:text="${el.count}"></span></li>
                                 <li class="my-0 font-weight-normal"><b>Цена: </b><span  th:text="${el.price}"></span> <span> рублей</span></span></li>
                             </ul>
-                            <button onclick="window.location.href = '/block/book/add';" type="button" class="btn btn-lg btn-block btn-primary">Редактирование</button>
+                            <button onclick="window.location.href = '/block/office/add';" type="button" class="btn btn-lg btn-block btn-primary">Редактирование</button>
                         </div>
                     </div>
                 </div>
-                <button onclick="window.location.href = '/block/book/add';" type="button" class="btn btn-lg btn-block btn-outline-primary">Добавить</button>
+                <button onclick="window.location.href = '/block/office/add';" type="button" class="btn btn-lg btn-block btn-outline-primary">Добавить</button>
             </div>
         </main>
 
