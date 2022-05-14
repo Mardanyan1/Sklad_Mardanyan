@@ -9,28 +9,26 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.awt.print.Book;
-
 @Controller
 public class BlockController {
 
     @Autowired
     private BooksRepository booksRepository;
 
-    @GetMapping("/block")
+    @GetMapping("/block/book")
     public String blockMain(Model model)
     {
         Iterable<Books> book = booksRepository.findAll();
         model.addAttribute("book", book);
-        return "tovar_block";
+        return "book_block";
     }
 
-    @GetMapping("/block/add")
+    @GetMapping("/block/book/add")
     public String blockAdd(Model model)
-    {return "block_add";}
+    {return "book_add";}
 
 
-    @PostMapping("/block/add")
+    @PostMapping("/block/book/add")
     public String blockPostAdd(@RequestParam String book_Name,
                                @RequestParam String author_Name,
                                @RequestParam int count,
