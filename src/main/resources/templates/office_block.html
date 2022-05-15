@@ -32,7 +32,7 @@
                                 <li><b>Количество: </b><span th:text="${el.count}"></span></li>
                                 <li class="my-0 font-weight-normal"><b>Цена: </b><span  th:text="${el.price}"></span> <span> рублей</span></span></li>
                             </ul>
-                            <button onclick="window.location.href = '/block/office/add';" type="button" class="btn btn-lg btn-block btn-primary">Редактирование</button>
+                            <a th:href = "'/block/office/' + ${el.id}"  class="btn btn-lg btn-block btn-primary">Редактирование</a>
                         </div>
                     </div>
                 </div>

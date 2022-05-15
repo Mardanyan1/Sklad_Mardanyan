@@ -10,19 +10,20 @@
         <header th:insert="blocks/header.html"></header>
 
         <div class="container mt-5">
-            <h1>Добавление товара</h1>
+            <h1>Редактирование</h1>
         </div>
 
         <div class="container">
-            <form action = "/block/book/add" method="post">
-                <input type="text" name="book_Name" placeholder="Название книги" class="form-control"><br>
-                <input type="text" name="author_Name" placeholder="Автор книги" class="form-control"><br>
-                <input type="text" name="count" placeholder="Количество товара" class="form-control"><br>
-                <input type="text" name="price" placeholder="Цена товара" class="form-control"><br>
-                <button type="submit" class="btn btn-success">Добавить</button>
-            </form>
-            <br>
-            <button onclick="window.location.href = '/block/book';" class="btn btn-danger">Не добавлять</button>
+            <div th:each="el:${office}">
+                <form method="post">
+                    <h3 th:text="${el.name}"></h3><p>
+                    <a th:href = "'/block/office/' + ${el.id} + '/edit'" type="submit" class="btn btn-success">Редактирование</a>
+                    <br><br>
+                </form>
+                <form th:action = "'/block/office/' + ${el.id} + '/remove'" method="post">
+                    <button class="btn btn-danger" type="submit">Удалить</button>
+                </form>
+            </div>
         </div>
 
 
@@ -32,11 +33,11 @@
         <script src="../../dist/js/bootstrap.min.js"></script>
         <script src="../../assets/js/vendor/holder.min.js"></script>
         <script>
-            Holder.addTheme('thumb', {
-                bg: '#55595c',
-                fg: '#eceeef',
-                text: 'Thumbnail'
-            });
+        Holder.addTheme('thumb', {
+        bg: '#55595c',
+        fg: '#eceeef',
+        text: 'Thumbnail'
+        });
         </script>
 
         <div th:insert="blocks/footer::footer"></div>
