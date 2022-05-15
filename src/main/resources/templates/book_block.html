@@ -33,11 +33,11 @@
                                 <li><b>Количество: </b><span th:text="${el.count}"></span></li>
                                 <li class="my-0 font-weight-normal"><b>Цена: </b><span  th:text="${el.price}"></span> <span> рублей</span></span></li>
                             </ul>
-                            <a th:href = "'/block/book/' + ${el.id}"  class="btn btn-lg btn-block btn-primary">Редактирование</a>
+                            <a th:href = "'/book/' + ${el.id}"  class="btn btn-lg btn-block btn-primary">Редактирование</a>
                         </div>
                     </div>
                 </div>
-                <button onclick="window.location.href = '/block/book/add';" type="button" class="btn btn-lg btn-block btn-outline-primary">Добавить</button>
+                <button onclick="window.location.href = '/book/add';" type="button" class="btn btn-lg btn-block btn-outline-primary">Добавить</button>
             </div>
         </main>
 

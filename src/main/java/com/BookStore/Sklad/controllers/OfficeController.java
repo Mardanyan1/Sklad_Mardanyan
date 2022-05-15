@@ -20,7 +20,7 @@ public class OfficeController {
     @Autowired
     private OfficesRepository officesRepository;
 
-    @GetMapping("/block/office")
+    @GetMapping("/office")
     public String blockMain(Model model)
     {
         Iterable<Offices> office = officesRepository.findAll();
@@ -28,28 +28,28 @@ public class OfficeController {
         return "office_block";
     }
 
-    @GetMapping("/block/office/add")
+    @GetMapping("/office/add")
     public String blockAdd(Model model)
     {return "office_add";}
 
 
-    @PostMapping("/block/office/add")
+    @PostMapping("/office/add")
     public String blockPostAdd(@RequestParam String name,
                                @RequestParam int count,
                                @RequestParam int price,Model model)
     {
         Offices offices = new Offices(name,count,price);
         officesRepository.save(offices);
-        return "redirect:/block";
+        return "redirect:/";
     }
 
 
-    @GetMapping("/block/office/{id}")
+    @GetMapping("/office/{id}")
     public String officeDetails(@PathVariable(value = "id") long id, Model model)
     {
         if(!officesRepository.existsById(id))
         {
-            return "redirect:/block";
+            return "redirect:/";
         }
         Optional<Offices> office = officesRepository.findAllById(id);
         ArrayList<Offices> res = new ArrayList<>();
@@ -59,12 +59,12 @@ public class OfficeController {
     }
 
 
-    @GetMapping("/block/office/{id}/edit")
+    @GetMapping("/office/{id}/edit")
     public String officeEdit(@PathVariable(value = "id") long id, Model model)
     {
         if(!officesRepository.existsById(id))
         {
-            return "redirect:/block";
+            return "redirect:/";
         }
         Optional<Offices> office = officesRepository.findAllById(id);
         ArrayList<Offices> res = new ArrayList<>();
@@ -73,7 +73,7 @@ public class OfficeController {
         return "office_edit";
     }
 
-    @PostMapping("/block/office/{id}/edit")
+    @PostMapping("/office/{id}/edit")
     public String officePostEdit(@PathVariable(value = "id") long id,
                                @RequestParam String name,
                                @RequestParam int count,
@@ -84,16 +84,16 @@ public class OfficeController {
         office.setCount(count);
         office.setPrice(price);
         officesRepository.save(office);
-        return "redirect:/block/office";
+        return "redirect:/office";
     }
 
 
-    @PostMapping("/block/office/{id}/remove")
+    @PostMapping("/office/{id}/remove")
     public String officePostDelete(@PathVariable(value = "id") long id, Model model)
     {
         Offices offices = officesRepository.findAllById(id).orElseThrow();
         officesRepository.delete(offices);
-        return "redirect:/block/office";
+        return "redirect:/office";
     }
 
 }

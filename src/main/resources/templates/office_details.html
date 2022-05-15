@@ -17,10 +17,10 @@
             <div th:each="el:${office}">
                 <form method="post">
                     <h3 th:text="${el.name}"></h3><p>
-                    <a th:href = "'/block/office/' + ${el.id} + '/edit'" type="submit" class="btn btn-success">Редактирование</a>
+                    <a th:href = "'/office/' + ${el.id} + '/edit'" type="submit" class="btn btn-success">Редактирование</a>
                     <br><br>
                 </form>
-                <form th:action = "'/block/office/' + ${el.id} + '/remove'" method="post">
+                <form th:action = "'/office/' + ${el.id} + '/remove'" method="post">
                     <button class="btn btn-danger" type="submit">Удалить</button>
                 </form>
             </div>

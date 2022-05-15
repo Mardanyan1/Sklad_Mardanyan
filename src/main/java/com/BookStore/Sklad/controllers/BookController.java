@@ -19,7 +19,7 @@ public class BookController {
     @Autowired
     private BooksRepository booksRepository;
 
-    @GetMapping("/block/book")
+    @GetMapping("/book")
     public String blockMain(Model model)
     {
         Iterable<Books> book = booksRepository.findAll();
@@ -27,12 +27,12 @@ public class BookController {
         return "book_block";
     }
 
-    @GetMapping("/block/book/add")
+    @GetMapping("/book/add")
     public String blockAdd(Model model)
     {return "book_add";}
 
 
-    @PostMapping("/block/book/add")
+    @PostMapping("/book/add")
     public String blockPostAdd(@RequestParam String book_Name,
                                @RequestParam String author_Name,
                                @RequestParam int count,
@@ -40,15 +40,15 @@ public class BookController {
     {
         Books books = new Books(book_Name,author_Name,count,price);
         booksRepository.save(books);
-        return "redirect:/block";
+        return "redirect:/";
     }
 
-    @GetMapping("/block/book/{id}")
+    @GetMapping("/book/{id}")
     public String bookDetails(@PathVariable(value = "id") long id, Model model)
     {
         if(!booksRepository.existsById(id))
         {
-            return "redirect:/block";
+            return "redirect:/";
         }
         Optional<Books> book = booksRepository.findAllById(id);
         ArrayList<Books> res = new ArrayList<>();
@@ -57,12 +57,12 @@ public class BookController {
         return "book_details";
     }
 
-    @GetMapping("/block/book/{id}/edit")
+    @GetMapping("/book/{id}/edit")
     public String bookEdit(@PathVariable(value = "id") long id, Model model)
     {
         if(!booksRepository.existsById(id))
         {
-            return "redirect:/block";
+            return "redirect:/";
         }
         Optional<Books> book = booksRepository.findAllById(id);
         ArrayList<Books> res = new ArrayList<>();
@@ -71,7 +71,7 @@ public class BookController {
         return "book_edit";
     }
 
-    @PostMapping("/block/book/{id}/edit")
+    @PostMapping("/book/{id}/edit")
     public String bookPostEdit(@PathVariable(value = "id") long id,
                                @RequestParam String book_Name,
                                @RequestParam String author_Name,
@@ -84,15 +84,15 @@ public class BookController {
         books.setCount(count);
         books.setPrice(price);
         booksRepository.save(books);
-        return "redirect:/block/book";
+        return "redirect:/book";
     }
 
 
-    @PostMapping("/block/book/{id}/remove")
+    @PostMapping("/book/{id}/remove")
     public String blockPostDelete(@PathVariable(value = "id") long id, Model model)
     {
         Books books = booksRepository.findAllById(id).orElseThrow();
         booksRepository.delete(books);
-        return "redirect:/block/book";
+        return "redirect:/book";
     }
 }

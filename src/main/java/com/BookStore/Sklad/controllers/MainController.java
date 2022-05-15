@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class MainController {
 
-    @GetMapping("/block")
+    @GetMapping("/")
     public String tovar(Model model) {
         model.addAttribute("title", "Main page");
         return "tovar";

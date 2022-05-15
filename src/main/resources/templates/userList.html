@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+  <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+            integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+            integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+            crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <header th:insert = "blocks/header.html"></header>
+    <table class="table">
+      <thead>
+      <tr>
+        <th></th>
+        <th>Имя</th>
+        <th>Роль</th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <div th:each="user, state: ${users}">
+        <tr>
+          <td th:text="${state.index + 1}"></td>
+          <td th:text="${user.username}"></td>
+          <td th:text="${user.getRoles()}"></td>
+          <td><a th:href="@{'/admin/user/'+ ${user.id}}" class="btn btn-lg btn-primary btn-black">Редактировать</a></td>
+          <td><a th:href="@{'/admin/user/delete/' + ${user.id}}" class="btn btn-danger">Удалить</a></td>
+        </tr>
+      </div>
+      </tbody>
+    </table>
+    <div th:insert="blocks/footer.html"></div>
+  </body>
+</html>
