@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html" xmlns:sec="http://www.w3.org/1999/xhtml">
     <head>
         <style>
             img
@@ -33,11 +33,11 @@
                                 <li><b>Количество: </b><span th:text="${el.count}"></span></li>
                                 <li class="my-0 font-weight-normal"><b>Цена: </b><span  th:text="${el.price}"></span> <span> рублей</span></span></li>
                             </ul>
-                            <a th:href = "'/book/' + ${el.id}"  class="btn btn-lg btn-block btn-primary">Редактирование</a>
+                            <a sec:authorize="hasAnyAuthority('ADMIN')" th:href = "'/book/' + ${el.id}"  class="btn btn-lg btn-block btn-primary">Редактирование</a>
                         </div>
                     </div>
                 </div>
-                <button onclick="window.location.href = '/book/add';" type="button" class="btn btn-lg btn-block btn-outline-primary">Добавить</button>
+                <button sec:authorize="hasAnyAuthority('ADMIN')" onclick="window.location.href = '/book/add';" type="button" class="btn btn-lg btn-block btn-outline-primary">Добавить</button>
             </div>
         </main>
 
