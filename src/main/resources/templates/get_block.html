@@ -15,12 +15,18 @@
 
         <header th:insert="blocks/header.html"></header>
 
-        <div class="container mt-5" style="text-align:center">
+        <div th:if="${#httpServletRequest.requestURI == '/office'}" class="container mt-5" style="text-align:center">
             <h1>Канцелярия</h1>
         </div>
 
+        <div  th:if="${#httpServletRequest.requestURI == '/book'}"class="container mt-5" style="text-align:center">
+            <h1>Книги</h1>
+        </div>
+
         <main>
-            <div class="container">
+            <div th:if="${#httpServletRequest.requestURI == '/office'}" class="container">
+                <button sec:authorize="hasAnyAuthority('ADMIN')" onclick="window.location.href = '/office/add';" type="button" class="btn btn-lg btn-block btn-info">Добавить</button>
+                <br>
                 <div class="card-deck mb-3 text-center" th:each="el: ${office}">
                     <div class="card mb-4 box-shadow">
                         <div class="card-header">
@@ -36,7 +42,26 @@
                         </div>
                     </div>
                 </div>
-                <button sec:authorize="hasAnyAuthority('ADMIN')" onclick="window.location.href = '/office/add';" type="button" class="btn btn-lg btn-block btn-outline-primary">Добавить</button>
+            </div>
+            <div th:if="${#httpServletRequest.requestURI == '/book'}" class="container">
+                <button sec:authorize="hasAnyAuthority('ADMIN')" onclick="window.location.href = '/book/add';" type="button" class="btn btn-lg btn-block btn-info">Добавить</button>
+                <br>
+                <div class="card-deck mb-3 text-center" th:each="el: ${book}">
+                    <div class="card mb-4 box-shadow">
+                        <div class="card-header">
+                            <h4 class="my-0 font-weight-normal" th:text="${el.book_Name}"></h4>
+                        </div>
+                        <div class="card-body">
+                            <img src="https://avatars.mds.yandex.net/i?id=aedf088141ef777f1b86b5fbbfb1c220-5451423-images-thumbs&n=13&exp=1">
+                            <ul class="list-unstyled mt-3 mb-4">
+                                <li><b>Имя автора: </b><span th:text="${el.author_Name}"></span></li>
+                                <li><b>Количество: </b><span th:text="${el.count}"></span></li>
+                                <li class="my-0 font-weight-normal"><b>Цена: </b><span  th:text="${el.price}"></span> <span> рублей</span></span></li>
+                            </ul>
+                            <a sec:authorize="hasAnyAuthority('ADMIN')" th:href = "'/book/' + ${el.id}"  class="btn btn-lg btn-block btn-primary">Редактирование</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </main>
 

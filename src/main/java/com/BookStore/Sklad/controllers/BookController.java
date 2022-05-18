@@ -24,12 +24,12 @@ public class BookController {
     {
         Iterable<Books> book = booksRepository.findAll();
         model.addAttribute("book", book);
-        return "book_block";
+        return "get_block";
     }
 
     @GetMapping("/book/add")
     public String blockAdd(Model model)
-    {return "book_add";}
+    {return "block_add";}
 
 
     @PostMapping("/book/add")

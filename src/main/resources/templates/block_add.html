@@ -14,14 +14,21 @@
         </div>
 
         <div class="container">
-            <form action = "/office/add" method="post">
-                <input type="text" name="name" placeholder="Название товара" class="form-control"><br>
-                <input type="text" name="count" placeholder="Количество товара" class="form-control"><br>
-                <input type="text" name="price" placeholder="Цена товара" class="form-control"><br>
+            <form th:if="${#httpServletRequest.requestURI == '/book/add'}" action = "/book/add" method="post">
+                <input ер type="text" name="book_Name" placeholder="Название книги" class="form-control" required><br>
+                <input type="text" name="author_Name" placeholder="Автор книги" class="form-control" required><br>
+                <input type="text" name="count" placeholder="Количество товара" class="form-control" required pattern="[0-9]{0,6}" ><br>
+                <input type="text" name="price" placeholder="Цена товара" class="form-control" required pattern="[0-9]{0,6}"><br>
+                <button type="submit" class="btn btn-success">Добавить</button>
+            </form>
+            <form th:if="${#httpServletRequest.requestURI == '/office/add'}" action = "/office/add" method="post">
+                <input type="text" name="name" placeholder="Название товара" class="form-control" required><br>
+                <input type="text" name="count" placeholder="Количество товара" class="form-control" required pattern="[0-9]{0,6}"><br>
+                <input type="text" name="price" placeholder="Цена товара" class="form-control" required pattern="[0-9]{0,6}"><br>
                 <button type="submit" class="btn btn-success">Добавить</button>
             </form>
             <br>
-            <button onclick="window.location.href = '/office';" class="btn btn-danger">Не добавлять</button>
+            <button onclick="window.location.href = '/';" class="btn btn-danger">Не добавлять</button>
         </div>
 
 

@@ -16,9 +16,9 @@
         <div class="container">
             <div th:each="el:${office}">
                 <form method="post">
-                    <input type="text" th:value = "${el.name}" name="name" placeholder="Название книги" class="form-control"><br>
-                    <input type="text" th:value = "${el.count}" name="count" placeholder="Количество товара" class="form-control"><br>
-                    <input type="text" th:value = "${el.price}" name="price" placeholder="Цена товара" class="form-control"><br>
+                    <input type="text" th:value = "${el.name}" name="name" placeholder="Название книги" class="form-control" required><br>
+                    <input type="text" th:value = "${el.count}" name="count" placeholder="Количество товара" class="form-control" required pattern="[0-9]{0,6}"><br>
+                    <input type="text" th:value = "${el.price}" name="price" placeholder="Цена товара" class="form-control" required pattern="[0-9]{0,6}"><br>
                     <button type="submit" class="btn btn-success">Обновить</button>
                     <br><br>
                     <button onclick="window.location.href = '/office';" class="btn btn-warning">Не обновлять</button>

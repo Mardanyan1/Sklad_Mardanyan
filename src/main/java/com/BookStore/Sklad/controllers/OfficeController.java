@@ -1,6 +1,5 @@
 package com.BookStore.Sklad.controllers;
 
-import com.BookStore.Sklad.models.Books;
 import com.BookStore.Sklad.models.Offices;
 import com.BookStore.Sklad.repository.OfficesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,12 +24,12 @@ public class OfficeController {
     {
         Iterable<Offices> office = officesRepository.findAll();
         model.addAttribute("office", office);
-        return "office_block";
+        return "get_block";
     }
 
     @GetMapping("/office/add")
     public String blockAdd(Model model)
-    {return "office_add";}
+    {return "block_add";}
 
 
     @PostMapping("/office/add")
