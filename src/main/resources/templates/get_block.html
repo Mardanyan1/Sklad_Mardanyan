@@ -22,7 +22,8 @@
         <div  th:if="${#httpServletRequest.requestURI == '/book'}"class="container mt-5" style="text-align:center">
             <h1>Книги</h1>
         </div>
-
+        <br>
+        <input>
         <main>
             <div th:if="${#httpServletRequest.requestURI == '/office'}" class="container">
                 <button sec:authorize="hasAnyAuthority('ADMIN')" onclick="window.location.href = '/office/add';" type="button" class="btn btn-lg btn-block btn-info">Добавить</button>
@@ -76,6 +77,30 @@
                 fg: '#eceeef',
                 text: 'Thumbnail'
             });
+        </script>
+
+        <script>
+            document.querySelector('#elastic').oninput = function ()
+            {
+                let val = this. value.trim();
+                let elasticItems = document. querySelectorAll('.elastic li');
+                if (val != '') {
+                    elasticItems.forEach(function (elem)
+                    {
+                        if (elem.innerText. search(val) == -1) {
+                            elem.classList.add('hide');}
+                        else {
+                                elem.classList.remove('hide');
+                            });
+                        }
+                    }
+                }
+                else
+                {
+
+
+            }
+
         </script>
 
         <div th:insert="blocks/footer::footer"></div>
