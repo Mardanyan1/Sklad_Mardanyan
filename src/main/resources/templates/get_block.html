@@ -80,27 +80,23 @@
         </script>
 
         <script>
-            document.querySelector('#elastic').oninput = function ()
-            {
+            document.querySelector("#elastic").oninput = function () {
                 let val = this. value.trim();
-                let elasticItems = document. querySelectorAll('.elastic li');
+                let elasticItems = document.querySelectorAll(".elastic li");
                 if (val != '') {
-                    elasticItems.forEach(function (elem)
-                    {
-                        if (elem.innerText. search(val) == -1) {
-                            elem.classList.add('hide');}
-                        else {
-                                elem.classList.remove('hide');
-                            });
+                    elasticItems.forEach(function (elem) {
+                        if (elem.innerText. search(val) = -1) {
+                            elem.classList.add("hide");
                         }
-                    }
+                        else {
+                            elem.classList. remove('hide');
+                        }
+                    });
                 }
-                else
-                {
-
-
-            }
-
+                else {
+                    elastic Items.forEach(function (elem) {
+                        elem.classList.remove("hide');
+                    });
         </script>
 
         <div th:insert="blocks/footer::footer"></div>
